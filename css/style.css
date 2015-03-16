@@ -1,7 +1,11 @@
 
-.small_container{
-    float: right;
-    width:50%;
+.right_container{
+    float: left;
+    width:80%;
+}
+.left_container{
+    float: left;
+    width:20%;
 }
 body{
 		text-align: center;
