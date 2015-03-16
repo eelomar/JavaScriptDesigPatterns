@@ -1,9 +1,9 @@
-.catimg {
-   
-    width:100%;
+
+.small_container{
+    float: right;
+    width:50%;
 }
-#counter{
-	text-align: center;
-	width:100%;
+body{
+		text-align: center;
 
 }
