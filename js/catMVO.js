@@ -65,6 +65,19 @@ var octopus = {
         };
         model.CatsObject.push(Ncat);
         view.renderList();
+    },
+    updateCat:function(oldName,name,counter,url){
+        var Ncat={
+            catName:name,
+            catCounter:parseInt(counter),
+            catImage:url
+        };
+var id=model.getIdCat(oldName);
+console.log(id);
+        model.CatsObject[id]=Ncat;
+        console.log(model.CatsObject);
+        view.renderList();
+
     }
 };
 
@@ -74,6 +87,7 @@ var view = {
         $NameCat: $('#nameCat'),
         $CounterCat: $('#counterCat'),
         $divImage:$('#image_loaded'),
+         $adminView:$('#admin_view'),
 
     init:function(){
         
@@ -86,10 +100,7 @@ var view = {
         var cat=octopus.getCat(name);
         octopus.incrementCounter(name);
         view.$CounterCat.text(cat.catCounter);
-    });
-
-
-
+        });
     },
     renderList:function(){
         var listOfCats=octopus.getAllcats();
@@ -106,6 +117,11 @@ var view = {
                    view.$divImage.attr('src', cat.catImage);
                    view.$NameCat.text(cat.catName);
                    view.$CounterCat.text(cat.catCounter);
+                   //change cat hide
+                   if (octopus.isVisble()) {
+                    view.$adminView.hide();
+                     octopus.SwapVisivility();}
+                     
                };
            })(listOfCats[i].catName)); 
            view.$listCats.append(elem);
@@ -117,34 +133,37 @@ var view = {
             view.$CounterCat.text(cat.catCounter);
     },
     initVisibi:function(){
-         var $adminView=$('#admin_view');
          var $adminButton=$('#admin_button');
          var $cancelButton=$('#cancel');
          var $saveButton=$('#save');
          var $NewCatname=$('#NewCatName');
          var $NewCatCounter=$('#NewCatCounter');
          var $newCatLocation=$('#NewCatSource');
-
-         $adminView.hide();
+            var oldName;
+         view.$adminView.hide();
          //addmin button
         $adminButton.click(function() {
-         if (!octopus.isVisble())$adminView.show();
-         else $adminView.hide();
+         if (!octopus.isVisble()){
+            oldName=view.$NameCat.text();
+         $NewCatname.val(view.$NameCat.text());
+        $NewCatCounter.val(view.$CounterCat.text());
+        $newCatLocation.val(view.$divImage.attr('src'));
+
+            view.$adminView.show();}
+         else view.$adminView.hide();
          octopus.SwapVisivility();});
 //cancel button
         $cancelButton.click(function() {
-        $NewCatname.val('Cat ');
-        $NewCatCounter.val(0);
-        $newCatLocation.val('images/ or URL');
-        $adminView.hide();
+        view.$adminView.hide();
         octopus.SwapVisivility();});
 //save button
  $saveButton.click(function() {
         var name=$NewCatname.val();
         var counter=$NewCatCounter.val();
         var url=$newCatLocation.val();
-        octopus.newCat(name,counter,url);
-        $adminView.hide();
+        octopus.updateCat(oldName,name,counter,url);
+        //octopus.newCat(name,counter,url);
+        view.$adminView.hide();
         octopus.SwapVisivility();});
     }
 };
