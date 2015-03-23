@@ -11,10 +11,21 @@
 		<div class="left_container " id="left_conta">
 			<h2 >List of cats</h2>
 			<select name="list" id="catsList"></select>
+			<button type="button" id="admin_button">Admin</button>
+			<div id="admin_view">
+				<form id="form_admin">Cat Name:<br>
+				<input type="text" id="NewCatName" value="Cat"><br>
+				Cat counter:<br>
+				<input type="text" id="NewCatCounter" value="0"><br>
+				Cat Source:<br>
+				<input type="text" id="NewCatSource" value="images/ or URL"><br>
+				<button type="button" id="cancel">Cancel</button><button type="button" id="save">Save</button>
+				</form>
+			</div>
 		</div>
 		<div class="right_container "id="right_conta">
-			<h2 id="nameCat"> ---</h2>
-			<h3 id="counterCat" > 0 </h3>
+			<h2 id="nameCat"> </h2>
+			<h3 id="counterCat" >  </h3>
 			<img id="image_loaded" src="">
 				
 
