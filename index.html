@@ -8,7 +8,7 @@
 <body>
 
 	<div class="container">
-		<div class="left_container " id="left_conta">
+		<!-- <div class="left_container " id="left_conta">
 			<h2 >List of cats</h2>
 			<select name="list" id="catsList"></select>
 			<button type="button" id="admin_button">Admin</button>
@@ -22,16 +22,27 @@
 				<button type="button" id="cancel">Cancel</button><button type="button" id="save">Save</button>
 				</form>
 			</div>
-		</div>
+		</div> -->
 		<div class="right_container "id="right_conta">
-			<h2 id="nameCat"> </h2>
-			<h3 id="counterCat" >  </h3>
-			<img id="image_loaded" src="">
+			<h2 data-bind="text: name" id="nameCat"> </h2>
+			<div data-bind="text: ClickCount"></div>
+
+			<h3 data-bind="text: title" id="counterCat" >  </h3>
+			<img alt="cat image" data-bind="click: incrementCounter,attr:{src:imgSrc}" id="image_loaded" src="">
+			</div>
+			<div>
+				<h3>NickNames: </h3>
+				<ul data-bind="foreach: nickNames">
+					<li data-bind="text:$data"></li>
+				</ul>
 				
 
 		</div>
 	</div>
 	<script src="js/lib/jquery.min.js"></script>
-	<script src="js/catMVO.js"></script>
+	<script src="js/lib/Knockout.js"></script>
+		<script src="js/appKnockout.js"></script>
+
+
 </body>
 </html>
