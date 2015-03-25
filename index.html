@@ -8,10 +8,16 @@
 <body>
 
 	<div class="container">
-		<!-- <div class="left_container " id="left_conta">
+		 <div class="left_container " id="left_conta">
 			<h2 >List of cats</h2>
-			<select name="list" id="catsList"></select>
-			<button type="button" id="admin_button">Admin</button>
+			<select name="catList" id="catsList" data-bind="options: catList,
+                       optionsText: 'name',
+                       value: currentCat,
+                       optionsCaption: 'Choose...'">
+			</select>
+
+
+		<!-- 	<button type="button" id="admin_button">Admin</button>
 			<div id="admin_view">
 				<form id="form_admin">Cat Name:<br>
 				<input type="text" id="NewCatName" value="Cat"><br>
@@ -21,15 +27,15 @@
 				<input type="text" id="NewCatSource" value="images/ or URL"><br>
 				<button type="button" id="cancel">Cancel</button><button type="button" id="save">Save</button>
 				</form>
-			</div>
-		</div> -->
-		<div class="right_container "id="right_conta">
+			</div> -->
+		</div> 
+		<div class="right_container "id="right_conta" data-bind="with:currentCat">
 			<h2 data-bind="text: name" id="nameCat"> </h2>
 			<div data-bind="text: ClickCount"></div>
 
 			<h3 data-bind="text: title" id="counterCat" >  </h3>
-			<img alt="cat image" data-bind="click: incrementCounter,attr:{src:imgSrc}" id="image_loaded" src="">
-			</div>
+			<img alt="cat image" data-bind="click: $parent.incrementCounter,attr:{src: imgSrc}" id="image_loaded" src="">
+			
 			<div>
 				<h3>NickNames: </h3>
 				<ul data-bind="foreach: nickNames">
